@@ -1,33 +1,25 @@
----
-layout: none
----
-
 <!DOCTYPE html>
 <html lang="uk">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Галерея фото</title>
-  <link rel="stylesheet" href="styles.css"/>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Masonry & imagesLoaded з CDN -->
+  <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js" defer></script>
+  <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js" defer></script>
 </head>
 <body>
   <h1>Тест галереї фото</h1>
 
-  <div class="gallery">
-    {% for f in site.static_files %}
-      {% if f.path contains 'img/' and f.extname != '' %}
-        <div class="thumb">
-          <img src="{{ f.path | relative_url }}" alt="{{ f.name }}"/>
-        </div>
-      {% endif %}
-    {% endfor %}
+  <!-- Контейнер для мозаїки -->
+  <div id="gallery" class="gallery"></div>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="hidden">
+    <img id="lightbox-img" src="" alt="">
   </div>
 
-  <!-- lightbox-overlay -->
-  <div id="overlay" class="hidden">
-    <img id="overlay-img" src="" alt=""/>
-  </div>
-
-  <script src="script.js"></script>
+  <script src="script.js" defer></script>
 </body>
 </html>
