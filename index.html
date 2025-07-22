@@ -1,17 +1,33 @@
+---
+layout: none
+---
+
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Галерея фото</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css"/>
 </head>
 <body>
   <h1>Тест галереї фото</h1>
+
   <div class="gallery">
-    <img src="img/1.png" alt="Зображення 1">
-    <img src="img/2.png" alt="Зображення 2">
-    <img src="img/3.png" alt="Зображення 3">
+    {% for f in site.static_files %}
+      {% if f.path contains 'img/' and f.extname != '' %}
+        <div class="thumb">
+          <img src="{{ f.path | relative_url }}" alt="{{ f.name }}"/>
+        </div>
+      {% endif %}
+    {% endfor %}
   </div>
+
+  <!-- lightbox-overlay -->
+  <div id="overlay" class="hidden">
+    <img id="overlay-img" src="" alt=""/>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
