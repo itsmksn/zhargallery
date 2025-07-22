@@ -1,4 +1,4 @@
-/* базові скидання */
+/* базове скидання */
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
@@ -13,35 +13,33 @@ h1 {
   margin-bottom: 1em;
 }
 
-/* колаж із CSS columns */
+/* контейнер Masonry */
 .gallery {
-  column-count: 3;
-  column-gap: 1em;
   max-width: 1200px;
   margin: 0 auto;
 }
 
-.thumb {
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 1em;
+/* кожен блок‑зображення */
+.gallery .grid-item {
+  width: 30%;            /* ~3 колонки */
+  margin-bottom: 10px;
   cursor: pointer;
-}
-
-.thumb img {
-  width: 100%;
-  display: block;
-  border-radius: 8px;
   transition: transform .3s, box-shadow .3s;
 }
 
-.thumb img:hover {
+.gallery .grid-item img {
+  display: block;
+  width: 100%;
+  border-radius: 8px;
+}
+
+.gallery .grid-item:hover {
   transform: scale(1.02);
   box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
-/* lightbox */
-#overlay {
+/* Lightbox */
+#lightbox {
   position: fixed;
   top: 0; left: 0;
   width: 100vw; height: 100vh;
@@ -50,12 +48,11 @@ h1 {
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  z-index: 100;
+  z-index: 999;
 }
+#lightbox.hidden { display: none; }
 
-#overlay.hidden { display: none; }
-
-#overlay-img {
+#lightbox-img {
   max-width: 90vw;
   max-height: 90vh;
   border-radius: 4px;
